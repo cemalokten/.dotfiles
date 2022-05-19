@@ -65,17 +65,13 @@ set signcolumn=yes
 " Remapped Keys
 let mapleader = ","
 
-
-n:nmap ;
-
 " Move lines/blocks up and down
 vnoremap <down> :m '>+1<CR>gv=gv
 vnoremap <up> :m '<-2<CR>gv=gv
 
-" Cycle through buffers with tab key
+" Cycle thr:ugh buffers with tab key
 nnoremap <tab> :bnext<CR>
 nnoremap <S-tab> :bprev<CR>
-
 
 " Fzf Search
 nnoremap <leader>ff :GFiles<CR>
@@ -96,10 +92,8 @@ nnoremap <leader>s :w<CR>
 " nnoremap <silent> gp    <cmd>lua vim.lsp.buf.definition()<CR> 
 nnoremap <silent> gt    <cmd>:ALEGoToDefinition<CR> 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Stolen from @garybernhardt's config (he so good)
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col
@@ -146,10 +140,6 @@ let g:ale_set_highlights = 0
 nnoremap gj :ALENextWrap<cr>
 nnoremap gk :ALEPreviousWrap<cr>
 nnoremap g1 :ALEFirst<cr>
-" This mapping will kill all ALE-related processes (including tsserver). It's
-" necessary when those processes get confused. E.g., tsserver will sometimes
-" show type errors that don't actually exist. I don't know exactly why that
-" happens yet, but I think that it's related to renaming files.
 nnoremap g0 :ALEStopAllLSPs<cr>
 
 let g:fzf_layout = { 'down': '~30%' }
