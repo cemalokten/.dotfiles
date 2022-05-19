@@ -49,7 +49,6 @@ set cursorline
 set cmdheight=1
 set switchbuf=useopen
 set showtabline=2
-" set shell=zsh
 set scrolloff=5
 set nobackup
 set nowritebackup
