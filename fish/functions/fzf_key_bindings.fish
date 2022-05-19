@@ -1,0 +1,1 @@
+/Users/cemalokten/.fzf/shell/key-bindings.fish
