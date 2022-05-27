@@ -1,9 +1,9 @@
 call plug#begin()
-
 " Themes
 Plug 'nanotech/jellybeans.vim'
 Plug 'savq/melange'
 Plug 'quanganhdo/grb256'
+Plug 'cseelus/vim-colors-clearance'
 
 " Text Search
 Plug 'ggandor/lightspeed.nvim'
@@ -12,14 +12,16 @@ Plug 'ggandor/lightspeed.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 
-" Linting / Prettier 
+" Linting / Prettier / Syntax Highlighting 
 Plug 'w0rp/ale'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
 
 " Remove highlight after text-search
 Plug 'romainl/vim-cool'
 
-" Search
+" Search & File Mangement
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -74,7 +76,7 @@ nnoremap <S-tab> :bprev<CR>
 
 " Fzf Search
 nnoremap <leader>ff :GFiles<CR>
-nnoremap <leader>f :Files<CR>
+nnoremap <leader>e :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 
 " Git
@@ -123,17 +125,20 @@ lua << EOF
 require'lightspeed'.setup {
   ignore_case = true,
 }
+
 EOF
+let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git \) -prune -o -print'
 
 " Format Document
 let g:ale_linters = {'javascript': ['tsserver', 'eslint'], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint'], 'typescriptreact': ['tsserver', 'eslint']}
-let g:ale_fixers = {'javascript': ['prettier'], 'typescript': ['prettier'], 'typescript.tsx': ['prettier'], 'typescriptreact': ['prettier']}
+let g:ale_fixers = {'javascript': ['eslint'], 'typescript': ['prettier'], 'typescript.tsx': ['prettier'], 'typescriptreact': ['prettier'], 'css': ['eslint']}
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 0
 let g:ale_set_quickfix = 0
 let g:ale_set_loclist = 0
 let g:ale_javascript_eslint_executable = 'eslint --cache'
+let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_set_highlights = 0
 
 nnoremap gj :ALENextWrap<cr>
@@ -149,3 +154,4 @@ let g:netrw_winsize = 25
 
 highlight clear SignColumn
 highlight Search guibg=blue guifg=white gui=none
+
