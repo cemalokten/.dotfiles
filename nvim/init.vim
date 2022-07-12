@@ -3,7 +3,7 @@ call plug#begin()
 Plug 'nanotech/jellybeans.vim'
 Plug 'savq/melange'
 Plug 'quanganhdo/grb256'
-Plug 'cseelus/vim-colors-clearance'
+Plug 'dracula/vim'
 
 " Text Search
 Plug 'ggandor/lightspeed.nvim'
@@ -17,7 +17,6 @@ Plug 'w0rp/ale'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
-
 " Remove highlight after text-search
 Plug 'romainl/vim-cool'
 
@@ -27,13 +26,15 @@ Plug 'junegunn/fzf.vim'
 
 " Commenting
 Plug 'tpope/vim-commentary'
+Plug 'dkarter/bullets.vim'
 
 " Git Changes in Gutter
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
-colorscheme grb256
+" colorscheme grb256
+colorscheme jellybeans
 set number
 set relativenumber
 set history=10000
@@ -75,7 +76,7 @@ nnoremap <tab> :bnext<CR>
 nnoremap <S-tab> :bprev<CR>
 
 " Fzf Search
-nnoremap <leader>ff :GFiles<CR>
+nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>e :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 
@@ -92,6 +93,7 @@ nnoremap <leader>s :w<CR>
 " Go To Definition (vim.lsp opens quickfix list)
 " nnoremap <silent> gp    <cmd>lua vim.lsp.buf.definition()<CR> 
 nnoremap <silent> gt    <cmd>:ALEGoToDefinition<CR> 
+
 
 " MULTIPURPOSE TAB KEY
 " Stolen from @garybernhardt's config (he so good)
@@ -152,6 +154,14 @@ let g:netrw_browse_split = 4
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]
+
 highlight clear SignColumn
 highlight Search guibg=blue guifg=white gui=none
 
+autocmd BufEnter * :syntax sync fromstart
