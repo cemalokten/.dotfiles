@@ -4,6 +4,8 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'savq/melange'
 Plug 'quanganhdo/grb256'
 Plug 'dracula/vim'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'morhetz/gruvbox'
 
 " Text Search
 Plug 'ggandor/lightspeed.nvim'
@@ -34,8 +36,9 @@ Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " colorscheme grb256
-colorscheme jellybeans
+colorscheme grb256
 set number
+set belloff=all
 set relativenumber
 set history=10000
 set expandtab
@@ -62,7 +65,8 @@ set nofoldenable
 set autoread
 set diffopt=vertical
 set signcolumn=yes
-:set termguicolors
+set termguicolors
+set winwidth=90
 
 " Remapped Keys
 let mapleader = ","
@@ -72,13 +76,15 @@ vnoremap <down> :m '>+1<CR>gv=gv
 vnoremap <up> :m '<-2<CR>gv=gv
 
 " Cycle thr:ugh buffers with tab key
-nnoremap <tab> :bnext<CR>
+map <§> <C-^>
 nnoremap <S-tab> :bprev<CR>
+nnoremap <tab> :bnext<CR>
 
 " Fzf Search
 nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>e :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>l :BLines<CR>
 
 " Git
 nnoremap <leader>g :G<CR>
@@ -115,6 +121,7 @@ inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
 
 
+
 lua << EOF
   require('lspconfig')['tsserver'].setup {
     capabilities = capabilities,
@@ -143,12 +150,8 @@ let g:ale_javascript_eslint_executable = 'eslint --cache'
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_set_highlights = 0
 
-nnoremap gj :ALENextWrap<cr>
-nnoremap gk :ALEPreviousWrap<cr>
-nnoremap g1 :ALEFirst<cr>
-nnoremap g0 :ALEStopAllLSPs<cr>
-
 let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_preview_window = ['right:hidden', 'ctrl-/']
 
 let g:netrw_browse_split = 4
 let g:netrw_banner = 0
@@ -165,3 +168,19 @@ highlight clear SignColumn
 highlight Search guibg=blue guifg=white gui=none
 
 autocmd BufEnter * :syntax sync fromstart
+
+" Autocomplete Brackets
+inoremap { {}<Esc>ha
+inoremap ( ()<Esc>ha
+inoremap [ []<Esc>ha
+inoremap " ""<Esc>ha
+inoremap ' ''<Esc>ha
+inoremap ` ``<Esc>ha
+
+
+" Console Log selected work in VISUAL MODE
+vmap <leader>iw y<esc>oconsole.log(<c-r>"<esc>
+
+" Better window navigation
+nnoremap <C-K> <C-W>W
+nnoremap <C-S> <C-W>V
