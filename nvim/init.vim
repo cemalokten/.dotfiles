@@ -1,14 +1,17 @@
 call plug#begin()
 " Themes
+Plug 'quanganhdo/grb256'
 Plug 'nanotech/jellybeans.vim'
 Plug 'savq/melange'
-Plug 'quanganhdo/grb256'
 Plug 'dracula/vim'
-Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'morhetz/gruvbox'
+Plug 'romgrk/github-light.vim'
+Plug 'fcpg/vim-fahrenheit'
+Plug 'arzg/vim-colors-xcode'
 
 " Text Search
-Plug 'ggandor/lightspeed.nvim'
+Plug 'ggandor/leap.nvim'
+Plug 'jinh0/eyeliner.nvim'
 
 " Language Server Protocol
 Plug 'neovim/nvim-lspconfig'
@@ -28,15 +31,20 @@ Plug 'junegunn/fzf.vim'
 
 " Commenting
 Plug 'tpope/vim-commentary'
-Plug 'dkarter/bullets.vim'
 
-" Git Changes in Gutter
+" Brackets
+" Plug 'machakann/vim-sandwich'
+
+" Git
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
-" colorscheme grb256
-colorscheme grb256
+colorscheme jellybeans
+set noswapfile
+set title
+set lazyredraw
 set number
 set belloff=all
 set relativenumber
@@ -54,7 +62,7 @@ set ignorecase smartcase
 set cursorline
 set cmdheight=1
 set switchbuf=useopen
-set showtabline=2
+set showtabline=1
 set scrolloff=5
 set nobackup
 set nowritebackup
@@ -76,7 +84,6 @@ vnoremap <down> :m '>+1<CR>gv=gv
 vnoremap <up> :m '<-2<CR>gv=gv
 
 " Cycle thr:ugh buffers with tab key
-map <§> <C-^>
 nnoremap <S-tab> :bprev<CR>
 nnoremap <tab> :bnext<CR>
 
@@ -84,10 +91,11 @@ nnoremap <tab> :bnext<CR>
 nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>e :Files<CR>
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>l :BLines<CR>
+" nnoremap <leader>l :BLines<CR>
 
 " Git
 nnoremap <leader>g :G<CR>
+nnoremap <leader>a :Git blame<CR>
 
 " Close Buffer
 nnoremap <leader>q :bd<CR>
@@ -120,8 +128,6 @@ endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
 
-
-
 lua << EOF
   require('lspconfig')['tsserver'].setup {
     capabilities = capabilities,
@@ -131,11 +137,12 @@ lua << EOF
     signs = false,
 })
 
-require'lightspeed'.setup {
-  ignore_case = true,
-}
-
+require('leap').set_default_keymaps()
+require('leap').setup {
+  case_sensitive = false,
+  }
 EOF
+
 let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git \) -prune -o -print'
 
 " Format Document
@@ -150,7 +157,7 @@ let g:ale_javascript_eslint_executable = 'eslint --cache'
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_set_highlights = 0
 
-let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_layout = { 'down': '~70%' }
 let g:fzf_preview_window = ['right:hidden', 'ctrl-/']
 
 let g:netrw_browse_split = 4
@@ -169,18 +176,16 @@ highlight Search guibg=blue guifg=white gui=none
 
 autocmd BufEnter * :syntax sync fromstart
 
-" Autocomplete Brackets
-inoremap { {}<Esc>ha
-inoremap ( ()<Esc>ha
-inoremap [ []<Esc>ha
-inoremap " ""<Esc>ha
-inoremap ' ''<Esc>ha
-inoremap ` ``<Esc>ha
+" " Autocomplete Brackets
+" inoremap { {}<Esc>ha
+" inoremap ( ()<Esc>ha
+" inoremap [ []<Esc>ha
+" inoremap " ""<Esc>ha
+" inoremap ' ''<Esc>ha
+" inoremap ` ``<Esc>ha
 
+map ,, <c-^>
 
-" Console Log selected work in VISUAL MODE
-vmap <leader>iw y<esc>oconsole.log(<c-r>"<esc>
+" nmap l <Plug>Lightspeed_s
 
-" Better window navigation
-nnoremap <C-K> <C-W>W
-nnoremap <C-S> <C-W>V
+hi StatusLine ctermbg=24 ctermfg=254 guibg=#404040 guifg=white

@@ -1,5 +1,12 @@
 package https://github.com/dracula/fish
+package powerline
+theme agnoster
 theme default
 theme kawasaki
+theme l
+theme neel
+theme pure
+theme simple
+theme simple-ass-prompt
 theme toaster
 theme zish
