@@ -1,9 +1,6 @@
 call plug#begin()
 " Themes
 Plug 'nanotech/jellybeans.vim'
-Plug 'quanganhdo/grb256'
-Plug 'savq/melange'
-Plug 'fcpg/vim-fahrenheit'
 
 " Text Search
 Plug 'ggandor/leap.nvim'
@@ -27,15 +24,12 @@ Plug 'junegunn/fzf.vim'
 " Commenting
 Plug 'tpope/vim-commentary'
 
-" Brackets
-" Plug 'machakann/vim-sandwich'
-
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-
 call plug#end()
 
+" Settings
 colorscheme jellybeans
 set noswapfile
 set title
@@ -88,6 +82,7 @@ nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>e :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>l :BLines<CR>
+nnoremap <leader>r :Rg<CR>
 
 " Git
 nnoremap <leader>g :G<CR>
@@ -95,7 +90,7 @@ nnoremap <leader>a :Git blame<CR>
 
 " Close Buffer
 nnoremap <leader>q :bd<CR>
-nnoremap <leader>rq <cmd>:1,$bd!<CR>
+nnoremap <leader>Q <cmd>:1,$bd!<CR>
 
 " Save
 nnoremap <leader>s :w<CR>
@@ -104,7 +99,7 @@ nnoremap <leader>s :w<CR>
 nnoremap <silent> gt    <cmd>:ALEGoToDefinition<CR> 
 
 " MULTIPURPOSE TAB KEY
-" Stolen from @garybernhardt's config (he so good)
+" Stolen from @garybernhardt's config 
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col
@@ -139,20 +134,20 @@ EOF
 
 " FZF 
 let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git \) -prune -o -print'
-let g:fzf_layout = { 'down': '~70%' }
+let g:fzf_layout = { 'down': '~50%' }
 let g:fzf_preview_window = ['right:hidden', 'ctrl-/']
 
 " Format Document
 let g:ale_linters = {'javascript': ['tsserver', 'eslint'], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint'], 'typescriptreact': ['tsserver', 'eslint']}
 let g:ale_fixers = {'javascript': ['eslint'], 'typescript': ['prettier'], 'typescript.tsx': ['prettier'], 'typescriptreact': ['prettier'], 'css': ['eslint']}
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_delay = 0
 let g:ale_set_quickfix = 0
 let g:ale_set_loclist = 0
-let g:ale_javascript_eslint_executable = 'eslint --cache'
-let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_set_highlights = 0
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_delay = 0
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_eslint_executable = 'eslint --cache'
+let g:ale_fix_on_save = 1
 
 let g:netrw_browse_split = 4
 let g:netrw_banner = 0
