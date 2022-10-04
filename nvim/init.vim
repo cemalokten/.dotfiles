@@ -20,6 +20,8 @@ Plug 'romainl/vim-cool'
 " Search & File Mangement
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'gfanto/fzf-lsp.nvim'
+Plug 'nvim-lua/plenary.nvim'
 
 " Commenting
 Plug 'tpope/vim-commentary'
@@ -27,6 +29,7 @@ Plug 'tpope/vim-commentary'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+
 call plug#end()
 
 " Settings
@@ -83,9 +86,11 @@ nnoremap <leader>e :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>l :BLines<CR>
 nnoremap <leader>r :Rg<CR>
+nnoremap <leader>y :References<CR>
+nnoremap <leader>z :History<CR>
 
 " Git
-nnoremap <leader>g :G<CR>
+nnoremap <leader>g :0G<CR>
 nnoremap <leader>a :Git blame<CR>
 
 " Close Buffer
@@ -96,7 +101,11 @@ nnoremap <leader>Q <cmd>:1,$bd!<CR>
 nnoremap <leader>s :w<CR>
 
 " Go To Definition (vim.lsp opens quickfix list)
-nnoremap <silent> gt    <cmd>:ALEGoToDefinition<CR> 
+nnoremap <silent>gt <cmd>:ALEGoToDefinition<CR> 
+
+" Open up notes.md
+nnoremap <leader><tab> :botright vsp ~/code/notes/notes.md<CR>
+
 
 " MULTIPURPOSE TAB KEY
 " Stolen from @garybernhardt's config 
@@ -130,10 +139,18 @@ require('leap').set_default_keymaps()
 require('leap').setup {
   case_sensitive = false,
 }
+
+-- Restore cursor position after saving and reopening
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+    pattern = { "*" },
+    callback = function()
+        vim.api.nvim_exec('silent! normal! g`"zv', false)
+    end,
+})
 EOF
 
 " FZF 
-let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git \) -prune -o -print'
+let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -name package-lock.json \) -prune -o -print'
 let g:fzf_layout = { 'down': '~50%' }
 let g:fzf_preview_window = ['right:hidden', 'ctrl-/']
 
