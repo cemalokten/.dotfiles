@@ -1,6 +1,8 @@
 call plug#begin()
 " Themes
 Plug 'nanotech/jellybeans.vim'
+Plug 'zanloy/vim-colors-grb256'
+Plug 'savq/melange'
 
 " Text Search
 Plug 'ggandor/leap.nvim'
@@ -29,6 +31,7 @@ Plug 'tpope/vim-commentary'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rhubarb'
 
 call plug#end()
 
@@ -66,11 +69,15 @@ set diffopt=vertical
 set signcolumn=yes
 set termguicolors
 set winwidth=90
+set hidden
 syntax on
 
 " Remapped Keys
-let mapleader = ","
-map ,, <c-^>
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+map <SPACE><SPACE> <c-^>
+" let mapleader = ","
+" map ,, <c-^>
 
 " Move lines/blocks up and down
 vnoremap <down> :m '>+1<CR>gv=gv
@@ -98,7 +105,7 @@ nnoremap <leader>q :bd<CR>
 nnoremap <leader>Q <cmd>:1,$bd!<CR>
 
 " Save
-nnoremap <leader>s :w<CR>
+nnoremap <leader>s :up<CR>
 
 " Go To Definition (vim.lsp opens quickfix list)
 nnoremap <silent>gt <cmd>:ALEGoToDefinition<CR> 
@@ -106,6 +113,13 @@ nnoremap <silent>gt <cmd>:ALEGoToDefinition<CR>
 " Open up notes.md
 nnoremap <leader><tab> :botright vsp ~/code/notes/notes.md<CR>
 
+" Remap b for Advantage2
+map <Del> b
+
+" Remap to center after scroll
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+nnoremap n nzz
 
 " MULTIPURPOSE TAB KEY
 " Stolen from @garybernhardt's config 
@@ -114,7 +128,6 @@ function! InsertTabWrapper()
     if !col
         return "\<tab>"
     endif
-
     let char = getline('.')[col - 1]
     if char =~ '\k'
         " There's an identifier before the cursor, so complete the identifier.
