@@ -8,6 +8,7 @@ Plug 'savq/melange'
 Plug 'ggandor/leap.nvim'
 
 " Language Server Protocol
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 
@@ -22,9 +23,7 @@ Plug 'romainl/vim-cool'
 " Search & File Mangement
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'gfanto/fzf-lsp.nvim'
 Plug 'nvim-lua/plenary.nvim'
-
 " Commenting
 Plug 'tpope/vim-commentary'
 
@@ -40,9 +39,8 @@ colorscheme jellybeans
 set noswapfile
 set title
 set lazyredraw
-set number
-set belloff=all
 set relativenumber
+set belloff=all
 set history=10000
 set expandtab
 set tabstop=2
@@ -74,10 +72,8 @@ syntax on
 
 " Remapped Keys
 nnoremap <SPACE> <Nop>
-let mapleader = " "
+let mapleader = "\<Space>"
 map <SPACE><SPACE> <c-^>
-" let mapleader = ","
-" map ,, <c-^>
 
 " Move lines/blocks up and down
 vnoremap <down> :m '>+1<CR>gv=gv
@@ -88,6 +84,7 @@ nnoremap <S-tab> :bprev<CR>
 nnoremap <tab> :bnext<CR>
 
 " Fzf Search
+imap <c-x><c-f> <plug>(fzf-complete-path)
 nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>e :Files<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -95,6 +92,7 @@ nnoremap <leader>l :BLines<CR>
 nnoremap <leader>r :Rg<CR>
 nnoremap <leader>y :References<CR>
 nnoremap <leader>z :History<CR>
+
 
 " Git
 nnoremap <leader>g :0G<CR>
@@ -120,6 +118,9 @@ map <Del> b
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 nnoremap n nzz
+
+" Toggle relative line number
+nmap <C-L><C-L> :set invrelativenumber<CR>
 
 " MULTIPURPOSE TAB KEY
 " Stolen from @garybernhardt's config 
@@ -154,12 +155,17 @@ require('leap').setup {
 }
 
 -- Restore cursor position after saving and reopening
-vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-    pattern = { "*" },
-    callback = function()
-        vim.api.nvim_exec('silent! normal! g`"zv', false)
-    end,
-})
+-- vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+--   pattern = { "*" },
+--   callback = function()
+--       vim.api.nvim_exec('silent! normal! g`"zv', false)
+--   end, })
+
+require('nvim-treesitter.configs').setup {
+  -- one of "all", "maintained" (parsers with maintainers),
+  -- or a list of languages
+  ensure_installed = { "javascript" },
+}
 EOF
 
 " FZF 
