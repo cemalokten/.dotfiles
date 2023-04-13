@@ -1,0 +1,56 @@
+[[language]]
+name = "typescript"
+auto-format = false
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+language-servers = ["typescript-language-server", "eslint"]
+
+[[language]]
+name = "javascript"
+auto-format = false
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+language-servers = ["typescript-language-server", "eslint"]
+
+[[language]]
+name = "tsx"
+auto-format = false
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+language-servers = ["typescript-language-server", "eslint"]
+
+[[language]]
+name = "jsx"
+auto-format = false
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+language-servers = ["typescript-language-server", "eslint"]
+
+# [[language]]
+# language-servers = [{except-features = ["format"], name = "typescript-language-server"}, "eslint"]
+# name = "typescript"
+
+# [[language]]
+# language-servers = [{except-features = ["format"], name = "typescript-language-server"}, "eslint"]
+# name = "javascript"
+
+# [[language]]
+# language-servers = [{except-features = ["format"], name = "typescript-language-server"}, "eslint"]
+# name = "jsx"
+
+# [[language]]
+# language-servers = [{except-features = ["format"], name = "typescript-language-server"}, "eslint"]
+# name = "tsx"
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+validate = "on"
+experimental = { useFlatConfig = false }
+rulesCustomizations = []
+run = "onType"
+problems = { shortenToSingleLine = false }
+nodePath = ""
+
+[language-server.eslint.config.codeAction]
+disableRuleComment = { "enable" = true, "location" = "sameLine" }
+showDocumentation = { "enable" = true }
+mode = "all"

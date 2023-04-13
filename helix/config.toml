@@ -1,0 +1,54 @@
+theme = "jellybeans"
+
+[editor.file-picker]
+hidden = false
+git-ignore = true
+
+[editor]
+idle-timeout = 0
+line-number = "relative"
+mouse = false
+auto-format = true
+true-color = true
+color-modes = true
+scrolloff = 25
+
+[editor.lsp]
+auto-signature-help = false
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.statusline]
+left = ["mode", "file-name", "version-control"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.search]
+smart-case = true
+
+[keys.normal]
+C-space = "goto_last_accessed_file" # Maps the Ctrl-s to the typable command :w which is an alias for :write (save file)
+C-u = ["half_page_up", "align_view_center"]
+C-d = ["half_page_down", "align_view_center"]
+C-r = ":reload"
+n = ["search_next", "align_view_center"]
+N = ["search_prev", "align_view_center"]
+V = ["goto_first_nonwhitespace", "extend_to_line_end"]
+D = ["ensure_selections_forward", "extend_to_line_end"]
+x = "extend_line"
+L = "repeat_last_motion"
+
+[keys.select]
+";" = ["collapse_selection", "normal_mode"]
+x = "extend_line"
+V = "extend_to_line_end"
+
+[keys.normal.space]
+w = ":write"
+q = ":buffer-close"
+space = "goto_last_accessed_file" 
+

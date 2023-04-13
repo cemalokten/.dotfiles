@@ -1,0 +1,99 @@
+[[language]]
+language-servers = [{except-features = ["format"], name = "typescript-language-server"}, {name = "efm-lsp-prettier", only-features = ["format"]}, "eslint"]
+name = "typescript"
+
+[[language]]
+language-servers = [{except-features = ["format"], name = "typescript-language-server"}, {name = "efm-lsp-prettier", only-features = ["format"]}, "eslint"]
+name = "javascript"
+
+# [[language]]
+# language-servers = [{except-features = ["format"], name = "typescript-language-server"}, {name = "efm-lsp-prettier", only-features = ["format"]}, "eslint"]
+# name = "css"
+
+# [[language]]
+# language-servers = [{except-features = ["format"], name = "typescript-language-server"}, {name = "efm-lsp-prettier", only-features = ["format"]}, "eslint"]
+# name = "jsx"
+
+# [[language]]
+# language-servers = [{except-features = ["format"], name = "typescript-language-server"}, {name = "efm-lsp-prettier", only-features = ["format"]}, "eslint"]
+# name = "tsx"
+
+# [[language]]
+# language-servers = [{except-features = ["format"], name = "vuels"}, {name = "efm-lsp-prettier"}, "eslint"]
+# name = "vue"
+
+[language-server]
+[language-server.efm-lsp-prettier]
+command = "efm-langserver"
+
+# Command that formats incorrectly on save
+[language-server.efm-lsp-prettier.config]
+documentFormatting = true
+
+[language-server.efm-lsp-prettier.config.languages]
+[[language-server.efm-lsp-prettier.config.languages.javascript]]
+formatCommand = "$(\n                      if [ -z \"$(command -v ${ROOT}/node_modules/.bin/prettier)\" ]; then\n                        echo prettier;\n                      else\n                        echo ${ROOT}/node_modules/.bin/prettier;\n                      fi\n                    ) --stdin-filepath ${INPUT}"
+formatStdin = true
+
+[[language-server.efm-lsp-prettier.config.languages.javascriptreact]]
+formatCommand = "$(\n                      if [ -z \"$(command -v ${ROOT}/node_modules/.bin/prettier)\" ]; then\n                        echo prettier;\n                      else\n                        echo ${ROOT}/node_modules/.bin/prettier;\n                      fi\n                    ) --stdin-filepath ${INPUT}"
+formatStdin = true
+
+# [[language-server.efm-lsp-prettier.config.languages.css]]
+# formatCommand = "$(\n                      if [ -z \"$(command -v ${ROOT}/node_modules/.bin/prettier)\" ]; then\n                        echo prettier;\n                      else\n                        echo ${ROOT}/node_modules/.bin/prettier;\n                      fi\n                    ) --stdin-filepath ${INPUT}"
+# formatStdin = true
+
+[[language-server.efm-lsp-prettier.config.languages.typescript]]
+formatCommand = "$(\n                      if [ -z \"$(command -v ${ROOT}/node_modules/.bin/prettier)\" ]; then\n                        echo prettier;\n                      else\n                        echo ${ROOT}/node_modules/.bin/prettier;\n                      fi\n                    ) --stdin-filepath ${INPUT}"
+formatStdin = true
+
+[[language-server.efm-lsp-prettier.config.languages.typescriptreact]]
+formatCommand = "$(\n                      if [ -z \"$(command -v ${ROOT}/node_modules/.bin/prettier)\" ]; then\n                        echo prettier;\n                      else\n                        echo ${ROOT}/node_modules/.bin/prettier;\n                      fi\n                    ) --stdin-filepath ${INPUT}"
+formatStdin = true
+
+# [[language-server.efm-lsp-prettier.config.languages.vue]]
+# formatCommand = "$(\n                      if [ -z \"$(command -v ${ROOT}/node_modules/.bin/prettier)\" ]; then\n                        echo prettier;\n                      else\n                        echo ${ROOT}/node_modules/.bin/prettier;\n                      fi\n                    ) --stdin-filepath ${INPUT}"
+# formatStdin = true
+
+[language-server.eslint]
+args = ["--stdio"]
+command = "vscode-eslint-language-server"
+
+[language-server.eslint.config]
+format = true
+nodePath = ""
+onIgnoredFiles = "off"
+packageManager = "yarn"
+quiet = false
+rulesCustomizations = []
+run = "onSave"
+useESLintClass = false
+validate = "on"
+
+[language-server.eslint.config.codeActionOnSave]
+enable = true
+
+[language-server.eslint.config.autoFixOnSave]
+enable = true
+
+# [language-server.eslint.config.codeAction]
+# [language-server.eslint.config.codeAction.disableRuleComment]
+# enable = false
+# location = "separateLine"
+
+# [language-server.eslint.config.codeAction.showDocumentation]
+# enable = true
+
+# [language-server.eslint.config.codeActionOnSave]
+# enable = true
+# mode = "all"
+
+# [language-server.eslint.config.workingDirectory]
+# mode = "location"
+
+# [language-server.typescript-language-server]
+# args = ["--stdio"]
+# command = "typescript-language-server"
+
+# [language-server.typescript-language-server.config]
+# documentFormatting = true
