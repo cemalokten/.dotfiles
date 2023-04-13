@@ -8,7 +8,6 @@ Plug 'savq/melange'
 Plug 'ggandor/leap.nvim'
 
 " Language Server Protocol
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 
@@ -23,14 +22,13 @@ Plug 'romainl/vim-cool'
 " Search & File Mangement
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'nvim-lua/plenary.nvim'
+
 " Commenting
 Plug 'tpope/vim-commentary'
 
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-rhubarb'
 
 call plug#end()
 
@@ -39,9 +37,9 @@ colorscheme jellybeans
 set noswapfile
 set title
 set lazyredraw
-set relativenumber
+set number
 set belloff=all
-set history=10000
+set history=1000
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -73,7 +71,7 @@ syntax on
 " Remapped Keys
 nnoremap <SPACE> <Nop>
 let mapleader = "\<Space>"
-map <SPACE><SPACE> <c-^>
+map <SPACE><SPACE> <c-6>
 
 " Move lines/blocks up and down
 vnoremap <down> :m '>+1<CR>gv=gv
@@ -83,8 +81,8 @@ vnoremap <up> :m '<-2<CR>gv=gv
 nnoremap <S-tab> :bprev<CR>
 nnoremap <tab> :bnext<CR>
 
+
 " Fzf Search
-imap <c-x><c-f> <plug>(fzf-complete-path)
 nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>e :Files<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -92,7 +90,7 @@ nnoremap <leader>l :BLines<CR>
 nnoremap <leader>r :Rg<CR>
 nnoremap <leader>y :References<CR>
 nnoremap <leader>z :History<CR>
-
+inoremap <expr> <c-x><c-f> fzf#vim#complete("fd <Bar> xargs realpath --relative-to " . expand("%:h"))
 
 " Git
 nnoremap <leader>g :0G<CR>
@@ -108,9 +106,6 @@ nnoremap <leader>s :up<CR>
 " Go To Definition (vim.lsp opens quickfix list)
 nnoremap <silent>gt <cmd>:ALEGoToDefinition<CR> 
 
-" Open up notes.md
-nnoremap <leader><tab> :botright vsp ~/code/notes/notes.md<CR>
-
 " Remap b for Advantage2
 map <Del> b
 
@@ -118,9 +113,6 @@ map <Del> b
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 nnoremap n nzz
-
-" Toggle relative line number
-nmap <C-L><C-L> :set invrelativenumber<CR>
 
 " MULTIPURPOSE TAB KEY
 " Stolen from @garybernhardt's config 
@@ -140,6 +132,7 @@ endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
 
+
 lua << EOF
 require('lspconfig')['tsserver'].setup {
     capabilities = capabilities,
@@ -155,23 +148,19 @@ require('leap').setup {
 }
 
 -- Restore cursor position after saving and reopening
--- vim.api.nvim_create_autocmd({ "BufReadPost" }, {
---   pattern = { "*" },
---   callback = function()
---       vim.api.nvim_exec('silent! normal! g`"zv', false)
---   end, })
-
-require('nvim-treesitter.configs').setup {
-  -- one of "all", "maintained" (parsers with maintainers),
-  -- or a list of languages
-  ensure_installed = { "javascript" },
-}
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+    pattern = { "*" },
+    callback = function()
+        vim.api.nvim_exec('silent! normal! g`"zv', false)
+    end,
+})
 EOF
 
+
 " FZF 
-let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -name package-lock.json \) -prune -o -print'
-let g:fzf_layout = { 'down': '~50%' }
-let g:fzf_preview_window = ['right:hidden', 'ctrl-/']
+let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -name package-lock.json \) -prune -o -print bat --style=numbers,changes --color=always {}'
+" let g:fzf_layout = { 'down': '~40%' }
+" let g:fzf_preview_window = ['right:hidden', 'ctrl-/']
 
 " Format Document
 let g:ale_linters = {'javascript': ['tsserver', 'eslint'], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint'], 'typescriptreact': ['tsserver', 'eslint']}
@@ -185,9 +174,9 @@ let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_eslint_executable = 'eslint --cache'
 let g:ale_fix_on_save = 1
 
-let g:netrw_browse_split = 4
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
+" let g:netrw_browse_split = 4
+" let g:netrw_banner = 0
+" let g:netrw_winsize = 25
 
 highlight clear SignColumn
 highlight Search guibg=blue guifg=white gui=none
