@@ -1,0 +1,11 @@
+[scroll]>[shutdn]
+[lctrl]>[lwin]
+[rwin]>[rctrl]
+[rctrl]>[rwin]
+{left}>{speed9}{-lshift}{-lctrl}{tab}{+lshift}{+lctrl}
+{right}>{speed9}{-lctrl}{tab}{+lctrl}
+{up}>{speed9}{-lshift}{obrack}{+lshift}
+{down}>{speed9}{-lshift}{cbrack}{+lshift}
+[kp-lctrl]>[lwin]
+[kp-rwin]>[rctrl]
+[kp-rctrl]>[rwin]
