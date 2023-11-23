@@ -29,7 +29,7 @@
 "string.special" = { fg = "yellow", modifiers = ["underlined"] } 
 "comment" = "light_gray" 
 
-"variable" = "light_yellow" 
+"variable" = { fg = "light_yellow"} 
 "variable.builtin" = { fg = "dark_green", modifiers = ["underlined"] }
 "variable.parameter" = "yellow"
 "variable.other.member" = "light_purple"
@@ -49,12 +49,12 @@
 
 "markup.bold" = { fg = "white", modifiers = ["bold"] }
 "markup.italic" = { modifiers = ["italic"] }
-"markup.heading" = { fg = "mid_blue", modifiers = ["bold"] } 
+"markup.heading" = { fg = "yellow", modifiers = ["bold"] } 
 "markup.list" = "dark_green" 
 "markup.list.numbered" = "mid_blue"
 "markup.list.unnumbered" = "mid_blue"
 "markup.link.url" = { fg = "dark_green", modifiers = ['italic', 'underlined'] }
-"markup.link.text" = "mid_blue"
+"markup.link.text" = "purple"
 "markup.link.label" = "purple"
 "markup.quote" = "dark_green"
 "markup.raw" = "dark_green"
@@ -69,7 +69,7 @@
 "ui.background" = { bg = "background" } # .separator
 "ui.cursor" = { bg = "background", modifiers = ["reversed"] }
 "ui.cursor.insert" = { bg = "light_yellow", fg="background" } 
-"ui.cursor.match" = { fg = "background", bg = "dark_orange" } 
+# "ui.cursor.match" = { fg = "background"} 
 "ui.cursorline" = { bg = "darker" }
 "ui.linenr" = "dark_gray"
 "ui.linenr.selected" = { fg = "light_yellow", bg = "darker" }
@@ -130,6 +130,7 @@ orange_accent = "#EE7F25"
 
 yellow = "#fad07a"
 light_yellow = "#EBEBD8"
+# light_yellow = "#e1d4b9"
 yellow_accent = "#DEA407"
 
 diff_plus = "#5A9F81"

@@ -1,0 +1,47 @@
+# Combined theme 
+
+"attribute" = { fg = "purple", bg = "light_purple" }
+"comment" = { fg = "light_gray" }
+"constant" = { fg = "dark_orange" }
+"constructor" = { fg = "yellow" }
+"function" = { fg = "yellow", modifiers = ["bold"] }  
+"function.builtin" = { fg = "green" }
+"keyword" = { fg = "mid_blue" }
+"label" = { modifiers = ["bold"] }
+"namespace" = { fg = "light_purple" }
+"operator" = { fg = "light_purple" }
+"punctuation.bracket" = { modifiers = ["bold"] } 
+"special" = { fg = "green" }
+"string" = { fg = "dark_green" }
+"type" = { fg = "light_blue" }
+"type.enum.variant" = { fg = "purple" }
+"variable" = { fg = "light_yellow" }
+"variable.parameter" = { fg = "yellow" }
+
+"markup.heading" = { fg = "mid_blue", modifiers = ["bold"] }
+"markup.link.url" = { fg = "dark_green", modifiers = ["italic", "underlined"] }
+
+"diff.plus" = { fg = "diff_plus" }
+"diff.minus" = { fg = "red_accent" }
+
+"ui.background" = { bg = "background" }
+"ui.selection" = { bg = "selection", fg = "selectionFG" }
+"ui.statusline" = { fg = "light_yellow", bg = "darker" }
+"ui.cursor" = { bg = "background", modifiers = ["reversed"] } 
+
+[palette]
+background = "#151515"
+light_purple = "#CDBEF0" 
+purple = "#a390f0"
+mid_blue = "#8197bf"
+light_blue = "#8fbfdc"
+dark_green = "#84A775"
+light_gray = "#6d6d6d"
+dark_orange = "#cf6a4c"
+yellow = "#fad07a"
+light_yellow = "#EBEBD8"
+diff_plus = "#5A9F81"
+selection = "#37232D"
+selectionFG = "#F2AAC7"
+red_accent = "#F44747"
+darker = "#292929"
