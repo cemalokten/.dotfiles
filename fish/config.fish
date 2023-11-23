@@ -10,8 +10,8 @@ set --universal pure_enable_git true
 set --universal pure_color_primary '#a390f0'
 set --universal pure_color_git_branch '#D57556' 
 set --universal pure_color_info '#52a7f6' 
-set --universal pure_symbol_prompt "I"
-set --universal pure_symbol_reverse_prompt "N"
+set --universal pure_symbol_prompt "INSERT"
+set --universal pure_symbol_reverse_prompt "NORMAL"
 set --universal pure_symbol_git_dirty " ?" 
 
 
@@ -30,7 +30,7 @@ export FFF_COL2=5
 export FFF_COL3=2
 
 # # Cursor color [0-9]
-# export FFF_COL4=1
+export FFF_COL4=1
 
 # # Status foreground color [0-9]
 export FFF_COL5=8
@@ -82,10 +82,21 @@ set --export --prepend PATH "/Users/cemalokten/.rd/bin"
 function fzf_rg
   bash /Users/cemalokten/.config/fish/bash/fzf.sh
 end
-alias F="fzf_rg"
+
+bind -M insert \cf fzf_rg
 
 # BAT THEME
 export BAT_THEME="Dracula"
 
 # Set cat to bat
 alias cat="bat"
+
+# Set ls to exa -alh
+alias ls="exa -alh"
+
+# GO path
+export PATH="$GOPATH/bin:$PATH"
+export PATH="$HOME/Go/bin:$PATH"
+
+
+
