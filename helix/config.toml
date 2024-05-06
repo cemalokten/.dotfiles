@@ -1,4 +1,4 @@
-theme = "jellybeans2"
+theme = "jellybeans-custom"
 
 [editor]
 idle-timeout = 0
@@ -39,8 +39,6 @@ enable = true
 C-space = "goto_last_accessed_file" # Maps the Ctrl-s to the typable command :w which is an alias for :write (save file)
 C-d = ["half_page_down", "goto_window_center"]
 C-u = ["half_page_up", "goto_window_center"]
-# C-e = ["jump_backward"]
-# C-r = ["jump_backward"]
 C-r = ":reload"
 n = ["search_next", "align_view_center"]
 N = ["search_prev", "align_view_center"]
@@ -54,6 +52,9 @@ X = "extend_line_above"
 x = "extend_line_below"
 ret = "collapse_selection"
 G = "goto_file_end"
+C-t = "jump_backward"
+C-y = "jump_forward"
+
 
 [keys.select]
 ";" = ["collapse_selection", "normal_mode"]
@@ -64,4 +65,5 @@ V = "extend_to_line_end"
 w = ":write"
 q = ":buffer-close"
 space = "goto_last_accessed_file" 
-i = ":toggle-option lsp.display-inlay-hints"
+i = "goto_word"
+z = ":yank-diagnostic"

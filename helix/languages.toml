@@ -87,14 +87,22 @@ auto-format = true
 args = ["--stdio"]
 command = "vscode-eslint-language-server"
 
+# [language-server.eslint.config]
+# format = true
+# nodePath = ""
+# onIgnoredFiles = "off"
+# quiet = false
+# rulesCustomizations = []
+# run = "onType"
+# validate = "on"
+
 [language-server.eslint.config]
-format = true
-nodePath = ""
-onIgnoredFiles = "off"
-quiet = false
+validate = "on"
+experimental = { useFlatConfig = false }
 rulesCustomizations = []
 run = "onType"
-validate = "on"
+problems = { shortenToSingleLine = false }
+nodePath = ""
 
 [language-server.eslint.config.codeAction]
 [language-server.eslint.config.codeAction.disableRuleComment]
@@ -120,24 +128,24 @@ documentFormatting = false
 
 # # FROM REDDIT https://www.reddit.com/r/HelixEditor/comments/16nu7rh/how_can_i_setup_typescript_eslint_prettier/
 
-#  [[language]]
-#  name = "typescript"
-#  language-servers = [  "typescript-language-server", "tailwindcss-react", "eslint"]
-#  formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
-#  auto-format = true
+ [[language]]
+ name = "typescript"
+ language-servers = [  "typescript-language-server", "tailwindcss-react", "eslint"]
+ formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+ auto-format = true
 
-#  [[language]]
-#  name = "tsx"
-#  language-servers = [ "typescript-language-server", "tailwindcss-react", "eslint", "emmet-language-server"]
-#  formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
-#  auto-format = true
+ [[language]]
+ name = "tsx"
+ language-servers = [ "typescript-language-server", "tailwindcss-react", "eslint", "emmet-language-server"]
+ formatter = { command = 'npx', args = ["prettier", "--parser", "typescript", "--plugin", "prettier-plugin-tailwindcss"] }
+ auto-format = true
 
-#  [[language]]
-#  name = "jsx"
-#  language-servers = [ "typescript-language-server", "tailwindcss-react", "eslint"]
-#  grammar = "javascript"
-#  formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
-#  auto-format = true
+ [[language]]
+ name = "jsx"
+ language-servers = [ "typescript-language-server", "tailwindcss-react", "eslint"]
+ grammar = "javascript"
+ formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+ auto-format = true
 
 #  [[language]]
 #  name = "javascript"
@@ -161,15 +169,15 @@ documentFormatting = false
 #  less = { validate = { enable = true } }
 #  provideFormatter = true
 
-#  [[language]]
-#  name = "html"
-#  formatter = { command = 'npx', args = ["prettier", "--parser", "html"] }
-#  language-servers = [ "vscode-html-language-server", "tailwindcss-react","emmet-language-server"]
+ [[language]]
+ name = "html"
+ formatter = { command = 'npx', args = ["prettier", "--parser", "html"] }
+ language-servers = [ "vscode-html-language-server", "tailwindcss-react","emmet-language-server"]
  
-#  [[language]]
-#  name = "css"
-#  formatter = { command = 'npx', args = ["prettier", "--parser", "css"] }
-#  language-servers = [ "vscode-css-language-server", "tailwindcss-react"]
+ [[language]]
+ name = "css"
+ formatter = { command = 'npx', args = ["prettier", "--parser", "css"] }
+ language-servers = [ "vscode-css-language-server", "tailwindcss-react"]
 
 #  [language-server.eslint]
 #  args = ["--stdio"]
@@ -196,11 +204,11 @@ documentFormatting = false
 #  args = ["--stdio"]
 
 
-#  [language-server.tailwindcss-react]
-#  language-id = "typescriptreact"
-#  command = "tailwindcss-language-server"
-#  args = ["--stdio"]
-#  config = {}
+ [language-server.tailwindcss-react]
+ language-id = "typescriptreact"
+ command = "tailwindcss-language-server"
+ args = ["--stdio"]
+ config = {}
 
 #  [language-server.typescript-language-server.config]
 #  documentFormatting = false

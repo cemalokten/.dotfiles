@@ -3,13 +3,15 @@ return {
   color_scheme = 'Jellybeans',
   font = wezterm.font('JetBrains Mono', { weight = 'Regular' }),
   font = wezterm.font { family = 'Pragmata Pro Mono' },
+  font = wezterm.font ( 'Iosevka', { weight = 'Regular', }),
   -- font = wezterm.font { family = 'Essential PragmataPro' },
   -- font = wezterm.font('Berkeley Mono'),
   -- font = wezterm.font('Envy Code R'),
   freetype_load_target = "Normal",
   force_reverse_video_cursor = true,
   scrollback_lines = 3500,
-  line_height = 1.25,
+  -- line_height = 1.25,
+  -- cell_width = 1.0,
   -- line_height = 1.35,
   -- font_size = 12, -- Standard
   -- font_size = 14, -- Standard
@@ -17,14 +19,20 @@ return {
   -- font_size = 18, -- Standard
   -- font_size = 19, -- Standard
   -- harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
-  font_size = 15, -- Laptop
+  font_size = 14, -- Laptop small
+  font_size= 15, -- Laptop
   -- font_size = 16, -- 27" Screen Small
   -- font_size = 17, -- 27" Screen Medium
   -- font_size = 18, -- 27" Screen Large
+  -- font_size = 20, -- 27" Screen Large
   tab_max_width = 500,
   use_fancy_tab_bar = false,
   cursor_blink_rate = 0,
-  send_composed_key_when_left_alt_is_pressed = true,
+  command_palette_font_size = 18,
+  send_composed_key_when_left_alt_is_pressed = false,
+  -- Performace settings
+  front_end = "WebGpu",
+  max_fps = 144,
   colors = {
     copy_mode_active_highlight_fg={Color="#ffffff"},
     copy_mode_active_highlight_bg={Color="#8787D7"},
@@ -88,6 +96,7 @@ return {
       mods = 'SHIFT|CMD',
       action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
+    { key = " ", mods = "SHIFT", action = wezterm.action.SendString("_")},
     {
       key = 'w',
       mods = 'CMD',
@@ -98,5 +107,11 @@ return {
       mods="CMD",
       action = wezterm.action{ ActivatePaneDirection="Next" }
     },
+    {
+		key = "3",
+		mods = "OPT",
+		action = wezterm.action.SendString("#"),
+	},
  },
 }
+

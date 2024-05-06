@@ -1,12 +1,11 @@
 call plug#begin()
 " Themes
 Plug 'nanotech/jellybeans.vim'
+Plug 'zanloy/vim-colors-grb256'
 Plug 'savq/melange'
-Plug 'quanganhdo/grb256'
-Plug 'dracula/vim'
 
 " Text Search
-Plug 'ggandor/lightspeed.nvim'
+Plug 'ggandor/leap.nvim'
 
 " Language Server Protocol
 Plug 'neovim/nvim-lspconfig'
@@ -26,18 +25,21 @@ Plug 'junegunn/fzf.vim'
 
 " Commenting
 Plug 'tpope/vim-commentary'
-Plug 'dkarter/bullets.vim'
 
-" Git Changes in Gutter
+" Git
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
-" colorscheme grb256
+" Settings
 colorscheme jellybeans
+set noswapfile
+set title
+set lazyredraw
 set number
-set relativenumber
-set history=10000
+set belloff=all
+set history=1000
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -51,58 +53,74 @@ set ignorecase smartcase
 set cursorline
 set cmdheight=1
 set switchbuf=useopen
-set showtabline=2
+set showtabline=1
 set scrolloff=5
 set nobackup
 set nowritebackup
-syntax on
 set wildmenu
 set foldmethod=manual
 set nofoldenable
 set autoread
 set diffopt=vertical
 set signcolumn=yes
-:set termguicolors
+set termguicolors
+set winwidth=90
+set hidden
+syntax on
 
 " Remapped Keys
-let mapleader = ","
+nnoremap <SPACE> <Nop>
+let mapleader = "\<Space>"
+map <SPACE><SPACE> <c-6>
 
 " Move lines/blocks up and down
 vnoremap <down> :m '>+1<CR>gv=gv
 vnoremap <up> :m '<-2<CR>gv=gv
 
-" Cycle thr:ugh buffers with tab key
-nnoremap <tab> :bnext<CR>
+" Cycle through buffers with tab key
 nnoremap <S-tab> :bprev<CR>
+nnoremap <tab> :bnext<CR>
+
 
 " Fzf Search
 nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>e :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>l :BLines<CR>
+nnoremap <leader>r :Rg<CR>
+nnoremap <leader>y :References<CR>
+nnoremap <leader>z :History<CR>
+inoremap <expr> <c-x><c-f> fzf#vim#complete("fd <Bar> xargs realpath --relative-to " . expand("%:h"))
 
 " Git
-nnoremap <leader>g :G<CR>
+nnoremap <leader>g :0G<CR>
+nnoremap <leader>a :Git blame<CR>
 
 " Close Buffer
 nnoremap <leader>q :bd<CR>
-nnoremap <leader>rq <cmd>:1,$bd!<CR>
+nnoremap <leader>Q <cmd>:1,$bd!<CR>
 
 " Save
-nnoremap <leader>s :w<CR>
+nnoremap <leader>s :up<CR>
 
 " Go To Definition (vim.lsp opens quickfix list)
-" nnoremap <silent> gp    <cmd>lua vim.lsp.buf.definition()<CR> 
-nnoremap <silent> gt    <cmd>:ALEGoToDefinition<CR> 
+nnoremap <silent>gt <cmd>:ALEGoToDefinition<CR> 
 
+" Remap b for Advantage2
+map <Del> b
+
+" Remap to center after scroll
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+nnoremap n nzz
 
 " MULTIPURPOSE TAB KEY
-" Stolen from @garybernhardt's config (he so good)
+" Stolen from @garybernhardt's config 
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col
         return "\<tab>"
     endif
-
     let char = getline('.')[col - 1]
     if char =~ '\k'
         " There's an identifier before the cursor, so complete the identifier.
@@ -116,52 +134,52 @@ inoremap <s-tab> <c-n>
 
 
 lua << EOF
-  require('lspconfig')['tsserver'].setup {
+require('lspconfig')['tsserver'].setup {
     capabilities = capabilities,
-  }
+}
   vim.diagnostic.config({
     virtual_text = false,
     signs = false,
 })
 
-require'lightspeed'.setup {
-  ignore_case = true,
+require('leap').set_default_keymaps()
+require('leap').setup {
+  case_sensitive = false,
 }
 
+-- Restore cursor position after saving and reopening
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+    pattern = { "*" },
+    callback = function()
+        vim.api.nvim_exec('silent! normal! g`"zv', false)
+    end,
+})
 EOF
-let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git \) -prune -o -print'
+
+
+" FZF 
+let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -name package-lock.json \) -prune -o -print bat --style=numbers,changes --color=always {}'
+" let g:fzf_layout = { 'down': '~40%' }
+" let g:fzf_preview_window = ['right:hidden', 'ctrl-/']
 
 " Format Document
 let g:ale_linters = {'javascript': ['tsserver', 'eslint'], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint'], 'typescriptreact': ['tsserver', 'eslint']}
 let g:ale_fixers = {'javascript': ['eslint'], 'typescript': ['prettier'], 'typescript.tsx': ['prettier'], 'typescriptreact': ['prettier'], 'css': ['eslint']}
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_delay = 0
 let g:ale_set_quickfix = 0
 let g:ale_set_loclist = 0
-let g:ale_javascript_eslint_executable = 'eslint --cache'
-let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_set_highlights = 0
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_delay = 0
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_eslint_executable = 'eslint --cache'
+let g:ale_fix_on_save = 1
 
-nnoremap gj :ALENextWrap<cr>
-nnoremap gk :ALEPreviousWrap<cr>
-nnoremap g1 :ALEFirst<cr>
-nnoremap g0 :ALEStopAllLSPs<cr>
-
-let g:fzf_layout = { 'down': '~30%' }
-
-let g:netrw_browse_split = 4
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
-
-let g:bullets_enabled_file_types = [
-    \ 'markdown',
-    \ 'text',
-    \ 'gitcommit',
-    \ 'scratch'
-    \]
+" let g:netrw_browse_split = 4
+" let g:netrw_banner = 0
+" let g:netrw_winsize = 25
 
 highlight clear SignColumn
 highlight Search guibg=blue guifg=white gui=none
+highlight StatusLine ctermbg=24 ctermfg=254 guibg=#404040 guifg=white
 
 autocmd BufEnter * :syntax sync fromstart

@@ -1,0 +1,75 @@
+theme = "new"
+
+"type" = "#71b3c8"
+"constant" = "red"
+"string" = "#ffa9ab"
+"comment" = "#48bd48"
+"variable" = "#d2dfff"
+"variable.builtin" = ""
+"label" = { fg = "", bg = "" }
+"punctuation" = ""
+"keyword" = { fg = "", bg = "" }
+"keyword.function" = { fg = "", bg = "" }
+"operator" = ""
+"function" = ""
+"function.method" = ""
+"function.builtin" = ""
+"function.macro" = ""
+"tag" = ""
+"namespace" = ""
+"attribute" = ""
+"constructor" = ""
+"module" = ""
+"special" = ""
+
+"markup.heading" = { fg = "", bg = "", modifiers = [""] }
+"markup.heading.marker" = ""
+"markup.list" = ""
+"markup.bold" = { modifiers = [""] }
+"markup.italic" = { modifiers = [""] }
+"markup.link.url" = { fg = "", modifiers = [""] }
+"markup.link.text" = ""
+"markup.quote" = ""
+"markup.raw" = ""
+
+"diff.plus" = ""
+"diff.delta" = ""
+"diff.minus" = ""
+
+
+"ui.background" = { bg =  "#000000" }
+"ui.background.separator" = ""
+"ui.cursor" = { bg = ""}
+"ui.cursor.match" = ""
+"ui.cursorline.primary" = { bg = "" }
+"ui.cursorline.secondary" = { bg = "" }
+"ui.selection" = { bg = "" }
+"ui.linenr" = ""
+"ui.linenr.selected" = ""
+"ui.statusline" = { fg = "", bg = "" }
+"ui.statusline.inactive" = { fg = "", bg = "" }
+"ui.statusline.normal" = { fg = "", bg = "", modifiers = [""] }
+"ui.statusline.insert" = { fg = "", bg = "", modifiers = [""] }
+"ui.statusline.select" = { fg = "", bg = "", modifiers = [""] }
+"ui.bufferline" = { fg = "", bg = "base7" }
+"ui.bufferline.active" = { fg = "", bg = "", modifiers = [""] }
+"ui.popup" = { fg = "", bg = "" }
+"ui.window" = { fg = "", bg = "" }
+"ui.help" = { fg = "", bg = "" }
+"ui.text" = ""
+"ui.text.focus" = ""
+"ui.menu" = { fg = "", bg = "" }
+"ui.menu.selected" = { fg = "", bg = "" }
+"ui.virtual.whitespace" = { fg = "" }
+"ui.virtual.indent-guide" = { fg = "" }
+"ui.virtual.ruler" = { bg = "" }
+
+"hint" = ""
+"info" = ""
+"warning" = ""
+"error" = ""
+"diagnostic" = { underline = { style = "" } }
+"diagnostic.hint" = { underline = { color = "", style = "" } }
+"diagnostic.info" = { underline = { color = "", style = "" } }
+"diagnostic.warning" = { underline = { color = "", style = "" } }
+"diagnostic.error" = { underline = { color = "", style = "" } }

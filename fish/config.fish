@@ -98,5 +98,33 @@ alias ls="exa -alh"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/Go/bin:$PATH"
 
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
 
+set -gx ATUIN_NOBIND "true"
+atuin init fish | source
 
+# bind to ctrl-r in normal and insert mode, add any other bindings you want here too
+bind \cr _atuin_search
+bind -M insert \cr _atuin_search
+
+# bind yy to open yazi
+function yy
+	set tmp (mktemp -t "yazi-cwd.XXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+end
+
+# pnpm
+set -gx PNPM_HOME "/Users/cemalokten/Library/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
+
+#Export HELIX runtime location
+export HELIX_RUNTIME=~/src/helix/runtime

@@ -1,0 +1,374 @@
+ls
+ls | sort-by size 
+ls | sort-by size | reverse
+ls
+rg
+rg fish
+ls
+config.fish | find fish
+nu tutor
+nu --tutor
+tutor
+tutor begin]
+tutor begin
+ls
+ls | select name
+tutor tables
+ls | select 0
+ls | select 1-2
+ls | select [1,2]
+ls | select [1,4]
+ls
+ls | select [0..7]
+ls | select 8
+ls | get name
+ls | select name
+tutor cells
+ls | select 4 | get name
+(ls).4.name
+tutor expressions
+echo (2+3)
+nu --theme
+nu theme
+nu help
+theme
+help
+help -h
+help match
+z bobbe
+altuin
+atuin
+ls
+brew install zoxide
+..
+z fish
+source
+ls
+cd coed
+cd code
+cd bobbe
+ls
+..
+z bobbe]
+zoxide
+$nu.env-path
+hx $nu.env-path
+$nu.config-path
+hx $nu.config-path
+ls
+cd code/
+cd bobbe/
+ls
+..
+z bobbe
+cd app/
+cd components/layout/
+z code
+z bob com
+z bobbe components
+z bobbe/build/
+..
+z bobbe components
+ls
+ls | select name
+z bobbe
+ls
+clear
+L
+lazygit
+z bobbe
+lazygit
+ls
+ls -t
+ls -tree
+ls --tree
+ls
+ls | select type === dir 
+ls | select type = dir
+ls | select type dir
+ls | select type | select dir
+qls | select type | <\n>
+qls | select type
+ls | select type
+cl;ear
+clear
+ls
+open package.json | from json
+open package.json
+open package.json | get engines
+open package.json | get devDependencies
+open package.json | get devDependencies | select 0
+open package.json | get devDependencies | select 1
+open package.json | get devDependencies | select @faker
+open package.json | get devDependencies | select @faker-js/faker
+ls
+cat package.json
+bat package.json
+open package.json 
+ls | where size > 10kb
+ls | where size < 10kb
+ls | where size < 10kb | sort-by sizse
+ls | where size < 10kb | sort-by size
+ls | where size < 10kb | sort-by !sizes
+ls | where size < 10kb | sort-by !size
+ls | where size < 10kb | sort-by !size | reverse
+ls | where size < 10kb | sort 
+open todo.md
+open tsconfig.json
+ls
+cd components/layout/
+z components.json
+z app
+ls
+$env.ATUIN_NOBIND = true<\n>atuin init nu | save -f ~/.local/share/atuin/init.nu #make sure you created the directory beforehand with `mkdir ~/.local/share/atuin/init.nu`<\n>source ~/.local/share/atuin/init.nu<\n><\n>#bind to ctrl-r in emacs, vi_normal and vi_insert modes, add any other bindings you want here too<\n>$env.config = (<\n>    $env.config | upsert keybindings (<\n>        $env.config.keybindings<\n>        | append {<\n>            name: atuin<\n>            modifier: control<\n>            keycode: char_r<\n>            mode: [emacs, vi_normal, vi_insert]<\n>            event: { send: executehostcommand cmd: (_atuin_search_cmd) }<\n>        }<\n>    )<\n>)
+$env.ATUIN_NOBIND = true
+atuin init nu | save -f ~/.local/share/atuin/init.nu #make sure you created the directory beforehand with `mkdir ~/.local/share/atuin/init.nu`
+source ~/.local/share/atuin/init.nu
+hx $nu.config-path
+:q
+atuin history start
+atuin history end
+atuin history
+atuin history list
+atuin
+atuin search
+hx $nu.config-path
+source ~/.local/share/atuin/init.nu
+..
+cd ~/.local
+ls
+cd share
+ls
+cd atuin
+ls
+hx init.nu
+source ~/.local/share/atuin/init.nu
+$env.ATUIN_NOBIND = true
+hxhx $nu.config-path
+hx $nu.config-path
+atuin search
+atuin
+atuin init
+atuin init nu
+hx $nu
+hx $nu.config-path
+z local
+ls
+z .local
+cd ~/.local
+ls
+cd share
+cd atuin/
+ls
+open init.nu
+z  ~/.config/nushell/config.nu
+cd  ~/.config/nushell/config.nu
+cd  ~/.config/
+ls
+hx
+$nu.config-path
+hx $nu.env-path
+ls
+hx $nu.config-path
+source $nu.config-path
+source ~/.local/share/atuin/init.nu
+nu ~/.local/share/atuin/init.nu
+:q
+ls
+tree
+ls | where start
+ls
+fish
+fish
+touch _main.therapist.tsx
+ls
+mv _main.therapist.settings.tsx _main.therapist.dashboard.settings.tsx
+ls
+hx $nu.config-path
+z  ~/.config/nushell
+z config
+ls
+cd atuioin
+cd atuiin
+cd atuin/
+ls
+cat config.toml
+bat config.toml
+z bobbe
+ls
+cd app/routes
+ls
+touch _main.therapist.dashboard.edit-profile.tsx
+ls
+lazygit
+zi
+brew remove atuin
+..
+brew install atuin
+nu --version
+ls
+..
+fish
+ls
+fidh
+atuin init nu | save ~/.local/share/atuin/init.nu
+$nu.config-path
+hx $nu.config-path
+rg _atuin_search_cmd
+fish
+fish
+atuin search -i
+z bobbe
+ls
+clear
+ls
+ls | where type = file
+ls | where type = name
+ls | where type
+ls | where col = name
+ls | where name
+clear
+ls
+ls | where type = file
+ls | where type === file
+ls | where type == file
+ls | where type == file | sort-by size
+ls | where type == file | sort-by size | reverse
+git status
+git log
+git log | sort-by Date
+git log | sort-by Date | reverse
+ls
+ls 
+z bobbe
+curl ifconfig.me
+curl ifconfig.me |<\n>
+clear
+ls
+http
+http get https://pokeapi.co/api/v2/pokemon/ditto
+http get https://pokeapi.co/api/v2/pokemon/ditto | table
+http get https://pokeapi.co/api/v2/pokemon/ditto | table | get held_items
+http get https://pokeapi.co/api/v2/pokemon/ditto | get held_items
+http get https://pokeapi.co/api/v2/pokemon/ditto | get held_items | table
+clear
+atuin search -i
+..
+ls
+clear
+ls
+cd app
+cd routes
+ls
+z routes
+ls
+mv _main.therapist._index.tsx _homepage.therapist._index.tsx
+hx
+ls
+..
+ls
+mv `alternative-therapist.css";` alternative-therapist.css
+ls
+rg 3000
+..
+rg 3000
+hx
+rg port
+ls
+cat remix.env.d.ts
+hx
+L
+lazygit
+hx wezterm.lua
+ls
+..
+ls
+keybindings default
+keybindings default | cat
+keybindings default | bat
+keybindings default | rg history
+keybindings default | fd history
+keybindings default
+keybindings default | fd Char('z')
+keybindings default | fd 'Char('z')'
+config reset
+theme
+theme --help
+bat money.md
+bat money.md | rg "\+"
+bat money.md | rg "+"
+bat money.md | rg \+
+bat money.md | awk '{print 1}'
+bat money.md | awk '{print 2}'
+bat money.md | awk '{1 print}'
+bat money.md | awk '{print $1}'
+bat money.md | awk '{print $3<\n><\n>}'
+bat money.md | awk '{print $2}'
+clear
+hx
+ls
+yarn add @uidotdev/usehooks
+L
+lazygit
+fish
+ls | sort-by name
+ls
+z eleventy-blog/
+ls | sort-by name
+cd Dockerfile
+mv docker-compose.yml docker-compose-bu.yml
+ls
+ls | sort-by name
+ls | sort-by type
+rm docker-compose-bu.yml
+ls
+ls | sort-by type
+cat todo.md
+ls | sort-by time
+ls | sort-by date
+ls
+ls | sort-by modified
+git clone https://github.com/ausminternet/remix-pocketbase-starter
+cd remix-pocketbase-starter/
+hx
+yarn
+hx
+L
+lazygit
+hx
+L
+lazygit
+yarn run dev
+hx .env
+yarn run dev
+yarn
+yarn run dev
+hx
+lazygit
+ls | sort-by modified
+hx `pb_schema(2).json`
+z bobbe-db
+..
+cd bobbe-db/
+fish
+ls | sort-by modified
+yy
+yazi
+atuin search -i
+yy
+z config
+ls
+nu --config
+$nu.config-path
+hx /Users/cemalokten/Library/Application Support/nushell/config.nu
+z nushell
+cd /Users/cemalokten/Library/Application Support/nushell/config.nu
+z /Users/cemalokten/Library/Application Support/nushell/config.nu
+..
+ls
+cd Applications/
+..
+ls
+cd `cemalokten/Library/Application Support/nushell/`
+ls
+yy
