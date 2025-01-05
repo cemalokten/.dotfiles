@@ -2,17 +2,23 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+export EDITOR="hx"
+export NVM_DEFAULT_VERSION=21
+export STRIPE_SECRET_KEY="sk_test_51QMCLy05BCWHhnEgrtYjGmrGU9JPWXuLN9yQFVpWMEN5jH42e3k5G5vH5YxTrWduZLfL0lIsSoYY6xjIAckR2MzU00woVDj1zG"
+
 set -gx EDITOR hx
+set -gx TERM xterm-256color
 
 set --universal pure_enable_single_line_prompt true
 set --universal pure_color_system_time pure_color_mute
 set --universal pure_enable_git true
 set --universal pure_color_primary '#a390f0'
-set --universal pure_color_git_branch '#D57556' 
-set --universal pure_color_info '#52a7f6' 
-set --universal pure_symbol_prompt "INSERT"
-set --universal pure_symbol_reverse_prompt "NORMAL"
-set --universal pure_symbol_git_dirty " ?" 
+set --universal pure_color_git_branch '#a7ff5f'
+set --universal pure_color_info '#52a7f6'
+set --universal pure_symbol_prompt INSERT
+set --universal pure_symbol_reverse_prompt NORMAL
+set --universal pure_symbol_git_dirty " :"
 
 
 # Use LS_COLORS to color fff.
@@ -80,7 +86,7 @@ set --export --prepend PATH "/Users/cemalokten/.rd/bin"
 
 # FZF & RIPGREP
 function fzf_rg
-  bash /Users/cemalokten/.config/fish/bash/fzf.sh
+    bash /Users/cemalokten/.config/fish/bash/fzf.sh
 end
 
 bind -M insert \cf fzf_rg
@@ -92,7 +98,8 @@ export BAT_THEME="Dracula"
 alias cat="bat"
 
 # Set ls to exa -alh
-alias ls="exa -alh"
+# alias ls="eza -alh"
+alias ls="eza -alh --group-directories-first --sort=type --no-permissions --no-user"
 
 # GO path
 export PATH="$GOPATH/bin:$PATH"
@@ -102,29 +109,86 @@ export PATH="$HOME/Go/bin:$PATH"
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-set -gx ATUIN_NOBIND "true"
+set -gx ATUIN_NOBIND true
 atuin init fish | source
 
-# bind to ctrl-r in normal and insert mode, add any other bindings you want here too
+# Basic bindings
 bind \cr _atuin_search
 bind -M insert \cr _atuin_search
 
+# Up arrow binding
+bind \e\[A _atuin_bind_up
+bind -M insert \e\[A _atuin_bind_up
+
 # bind yy to open yazi
 function yy
-	set tmp (mktemp -t "yazi-cwd.XXXXX")
-	yazi $argv --cwd-file="$tmp"
-	if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-		cd -- "$cwd"
-	end
-	rm -f -- "$tmp"
+    set tmp (mktemp -t "yazi-cwd.XXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
 end
 
 # pnpm
-set -gx PNPM_HOME "/Users/cemalokten/Library/pnpm"
+set -gx PNPM_HOME /Users/cemalokten/Library/pnpm
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
 
 #Export HELIX runtime location
 export HELIX_RUNTIME=~/src/helix/runtime
+
+# Added by Windsurf
+fish_add_path /Users/cemalokten/.codeium/windsurf/bin
+
+# task-warrior GTD alias
+alias in='task add +in project:general'
+
+# Pomodoro timer
+function work
+    # usage: work 10m, work 60s etc. Default is 20m
+    set -q argv[1]; or set argv[1] 20m
+    timer $argv[1]; and terminal-notifier -message Pomodoro \
+        -title 'Work Timer is up! Take a Break 😊' \
+        -sound Crystal
+end
+
+function rest
+    # usage: rest 10m, rest 60s etc. Default is 5m
+    set -q argv[1]; or set argv[1] 5m
+    timer $argv[1]; and terminal-notifier -message Pomodoro \
+        -title 'Break is over! Get back to work 😬' \
+        -sound Crystal
+end
+
+# if status is-interactive
+#     # First preserve all environment variables
+#     set PATH_STR (string join ':' $PATH)
+#     set -x PATH $PATH_STR
+
+#     # Export all your crucial variables
+#     set -x EDITOR $EDITOR
+#     set -x TERM $TERM
+#     set -x GOPATH $GOPATH
+#     set -x BUN_INSTALL $BUN_INSTALL
+#     set -x PNPM_HOME $PNPM_HOME
+#     set -x HELIX_RUNTIME $HELIX_RUNTIME
+#     set -x BAT_THEME $BAT_THEME
+#     set -x FFF_LS_COLORS $FFF_LS_COLORS
+#     set -x FFF_COL2 $FFF_COL2
+#     set -x FFF_COL3 $FFF_COL3
+#     set -x FFF_COL4 $FFF_COL4
+#     set -x FFF_COL5 $FFF_COL5
+#     set -x FFF_CD_FILE $FFF_CD_FILE
+#     set -x FFF_TRASH_CMD $FFF_TRASH_CMD
+#     set -x OPEN_WEATHER_API_KEY $OPEN_WEATHER_API_KEY
+#     set -x STRIPE_SECRET_KEY $STRIPE_SECRET_KEY
+
+#     # Launch Nushell unless we're already in it
+#     if not set -q NUSHELL_RUNNING
+#         set -x NUSHELL_RUNNING true
+#         exec nu
+#     end
+# end

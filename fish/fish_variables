@@ -61,7 +61,7 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dreverse
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/opt/homebrew/bin
+SETUVAR fish_user_paths:/Users/cemalokten/\x2ecodeium/windsurf/bin\x1e/opt/homebrew/bin
 SETUVAR nvm_data:/Users/cemalokten/\x2elocal/share/nvm
 SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist
 SETUVAR pure_begin_prompt_with_current_directory:true
@@ -72,7 +72,7 @@ SETUVAR pure_color_current_directory:pure_color_primary
 SETUVAR pure_color_danger:red
 SETUVAR pure_color_dark:black
 SETUVAR pure_color_git_brancg:\x23EBEBD8
-SETUVAR pure_color_git_branch:\x23D57556
+SETUVAR pure_color_git_branch:\x23a7ff5f
 SETUVAR pure_color_git_dirty:pure_color_mute
 SETUVAR pure_color_git_stash:pure_color_info
 SETUVAR pure_color_git_unpulled_commits:pure_color_info
@@ -103,7 +103,7 @@ SETUVAR pure_show_prefix_root_prompt:false
 SETUVAR pure_show_subsecond_command_duration:false
 SETUVAR pure_show_system_time:false
 SETUVAR pure_symbol_container_prefix:
-SETUVAR pure_symbol_git_dirty:\x20\x3f
+SETUVAR pure_symbol_git_dirty:\x20\x3a
 SETUVAR pure_symbol_git_stash:\u2261
 SETUVAR pure_symbol_git_unpulled_commits:\u21e3
 SETUVAR pure_symbol_git_unpushed_commits:\u21e1
