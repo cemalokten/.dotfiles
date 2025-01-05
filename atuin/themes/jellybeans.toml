@@ -1,0 +1,14 @@
+[theme]
+name = "jellybeans"
+parent = "marine"
+
+[colors]
+AlertInfo = "#a8ff60"    # Rust Orange
+AlertWarn = "#a8ff60"    # Dark Terra Cotta
+AlertError = "#a8ff60"   # Dark Red (keeping this more distinct for errors)
+Annotation = "#8fbfdc"
+Important = "#99ad6a"
+Title = "#a390f0"
+Base = "#CDBEF0"
+Guidance = "#75a5b0"
+
