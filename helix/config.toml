@@ -10,7 +10,7 @@ scrolloff = 25
 
 [editor.lsp]
 display-inlay-hints = false
-display-messages = false
+display-messages = true
 auto-signature-help = false
 snippets = true
 
