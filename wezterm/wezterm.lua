@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
 return {
+  -- default_prog = {'/Users/cemalokten/.cargo/bin/nu'},
   color_scheme = 'Jellybeans',
   font = wezterm.font('JetBrains Mono', { weight = 'Regular' }),
   font = wezterm.font { family = 'Pragmata Pro Mono' },
@@ -9,6 +10,7 @@ return {
   -- font = wezterm.font('Envy Code R'),
   freetype_load_target = "Normal",
   force_reverse_video_cursor = true,
+  term = "xterm-256color",
   scrollback_lines = 3500,
   -- line_height = 1.25,
   -- cell_width = 1.0,
@@ -21,7 +23,7 @@ return {
   -- harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   font_size = 14, -- Laptop small
   font_size= 15, -- Laptop
-  -- font_size = 16, -- 27" Screen Small
+  font_size = 16, -- 27" Screen Small
   -- font_size = 17, -- 27" Screen Medium
   -- font_size = 18, -- 27" Screen Large
   -- font_size = 20, -- 27" Screen Large
@@ -95,6 +97,11 @@ return {
       key = 'w',
       mods = 'SHIFT|CMD',
       action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+    },
+    {
+      key = 'e',
+      mods = 'SHIFT|CMD',
+      action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
     },
     { key = " ", mods = "SHIFT", action = wezterm.action.SendString("_")},
     {
