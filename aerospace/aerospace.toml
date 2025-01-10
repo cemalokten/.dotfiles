@@ -78,25 +78,58 @@ l = 'resize width +50'
 enter = 'mode main'
 esc = 'mode main'
 
+
+# Desktop
+
+# [[on-window-detected]]
+# if.app-id = 'com.github.wez.wezterm'  # WezTerm
+# run = 'move-node-to-workspace 1'       # Terminal workspace
+
+# [[on-window-detected]]
+# if.app-id = 'org.mozilla.firefox'      # Firefox
+# run = 'move-node-to-workspace 1'       # Browser workspace
+
+# [[on-window-detected]]
+# if.app-id = 'com.figma.Desktop'        # Figma
+# run = 'move-node-to-workspace 2'       # Design workspace
+
+# [[on-window-detected]]
+# if.app-id = "net.whatsapp.WhatsApp"
+# run = 'move-node-to-workspace 3'       # Communication workspace
+
+# [[on-window-detected]]
+# if.app-id = 'com.cron.electron'        # Calendar
+# run = 'move-node-to-workspace 4'       
+
+# [[on-window-detected]]
+# if.app-id = 'com.spotify.client'        # Spotify
+# run = 'move-node-to-workspace 5'       # Design workspace
+
+# Laptop
+
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'  # WezTerm
 run = 'move-node-to-workspace 1'       # Terminal workspace
 
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'      # Firefox
-run = 'move-node-to-workspace 1'       # Browser workspace
+run = 'move-node-to-workspace 2'       # Browser workspace
 
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'        # Figma
-run = 'move-node-to-workspace 2'       # Design workspace
+run = 'move-node-to-workspace 3'       # Design workspace
 
 [[on-window-detected]]
 if.app-id = "net.whatsapp.WhatsApp"
-run = 'move-node-to-workspace 3'       # Communication workspace
+run = 'move-node-to-workspace 4'       # Communication workspace
 
 [[on-window-detected]]
 if.app-id = 'com.cron.electron'        # Calendar
-run = 'move-node-to-workspace 4'       # Design workspace
+run = 'move-node-to-workspace 5'       
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'        # Spotify
+run = 'move-node-to-workspace 6'       # Design workspace
 
 [gaps]
 inner.horizontal = 40
