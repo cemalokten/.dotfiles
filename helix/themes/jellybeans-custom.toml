@@ -91,7 +91,7 @@
 "ui.selection.primary" = { bg = "selection", modifiers = ["reversed"]  }
 # "ui.selection" = { bg = "darker" }
 # "ui.selection.primary" = { bg = "selection", fg = "selectionFG" }
-"ui.virtual.jump-label" = { fg = "light_blue", bg = "dark_blue", modifiers = ["bold"] }
+"ui.virtual.jump-label" = { fg = "darkest", bg = "purple", modifiers = ["bold"] }
 
 "hint" = "blue"
 "info" = "yellow_accent"
@@ -123,6 +123,7 @@ blue_accent = "#2197F3"
 
 green = "#99ad6a"
 dark_green = "#84A775"
+bright_green = "#a7ff5f"
 
 red = "#CC7C8A"
 red_error = "#e60000"
